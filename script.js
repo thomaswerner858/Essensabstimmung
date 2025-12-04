@@ -96,7 +96,7 @@ async function fetchAndRenderLokale() {
 }
 
 // ----------------------------------------------------------------------------------
-// 2. renderLokale (Angepasst für Plus/Minus-Buttons)
+// 2. renderLokale (Angepasst für Plus/Minus-Buttons und Textkorrektur)
 // ----------------------------------------------------------------------------------
 function renderLokale(lokale, hasVoted) {
     const container = document.getElementById('lokale-liste');
@@ -109,12 +109,12 @@ function renderLokale(lokale, hasVoted) {
             card.classList.add('winner');
         }
 
-        // --- NEUER HTML-INHALT FÜR ABSTIMMUNG ---
+        // --- HIER WURDE DER CODE KORRIGIERT (Entfernung der **) ---
         card.innerHTML = `
             <h2>${lokal.Name}</h2>
             <p class="essen">${lokal.Essen}</p>
-            <p>💰 **Preis:** ${lokal.Preis || 'N/A'}</p>
-            <p>🚶 **Wegzeit:** ${lokal['Time to Travel (1-way)'] || 'N/A'}</p>
+            <p>💰 Preis: ${lokal.Preis || 'N/A'}</p>
+            <p>🚶 Wegzeit: ${lokal['Time to Travel (1-way)'] || 'N/A'}</p>
             
             <div class="vote-area">
                 <span class="stimmen-count">${lokal.Stimmen} Stimmen</span>
