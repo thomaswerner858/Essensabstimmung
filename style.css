@@ -24,6 +24,8 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.5;
+    /* WICHTIG: Fügt Platz für das Floating-Panel unten hinzu */
+    padding-bottom: 70px; 
 }
 
 header {
@@ -178,27 +180,43 @@ h2 {
     background-color: #fb8c00; /* Dunkleres Orange */
 }
 
-/* --- Globales Abstimmungs-Panel (Voting Controls) --- */
+/* ====================================================================================
+   FLOATING ABSTIMMUNGS-KONTROLLE (NEU)
+   ==================================================================================== */
 #voting-controls {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 24px;
-    background-color: var(--color-card-bg);
-    border-radius: 10px;
-    box-shadow: var(--shadow-md);
-    text-align: center;
-    border: 1px solid var(--color-border);
+    /* Floating und Positionierung */
+    position: fixed; /* Macht das Element schwebend */
+    bottom: 0;       /* Haftet am unteren Rand */
+    left: 0;         /* Beginn am linken Rand */
+    width: 100%;     /* Volle Breite */
+    z-index: 1000;   /* Stellt sicher, dass es über den Karten liegt */
+    
+    /* Layout und Design */
+    background-color: var(--color-card-bg); /* Weißer Hintergrund */
+    border-top: 1px solid var(--color-border); /* Leichte Trennlinie oben */
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.06); /* Schatten nach oben */
+    
+    /* Inhalt zentrieren und Abstand */
+    display: flex;
+    justify-content: center; /* Zentriert den Inhalt */
+    align-items: center;
+    gap: 30px; /* Abstand zwischen Text und Button */
+    padding: 12px 20px; /* Innenabstand */
+    
+    /* Responsive Breite für Inhalt */
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
 }
 
+/* Anpassung des Textes für das Floating-Panel */
 #voting-controls p {
-    font-size: 1.2em;
-    font-weight: 500;
-    color: var(--color-text);
-    margin-bottom: 15px;
+    margin-bottom: 0; 
+    font-size: 1.1em;
 }
 
 #votes-left {
-    color: var(--color-danger); /* Rot für verbleibende Stimmen, um Aufmerksamkeit zu erzeugen */
+    color: var(--color-danger); 
     font-size: 1.6em;
     margin-left: 5px;
     font-weight: bold;
@@ -208,17 +226,17 @@ h2 {
     background-color: var(--color-primary);
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 10px 25px; 
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
     transition: background-color 0.2s;
     box-shadow: var(--shadow-sm);
 }
 
 #submit-votes:hover:not(:disabled) {
-    background-color: #5e35b1; /* Dunkleres Lila */
+    background-color: #5e35b1; 
     box-shadow: var(--shadow-md);
 }
 
@@ -248,7 +266,11 @@ footer {
     header h1 {
         font-size: 1.8em;
     }
+    /* Mobile Anpassung für das Floating Panel */
     #voting-controls {
-        padding: 15px;
+        flex-direction: column; /* Stapelt Text und Button untereinander */
+        gap: 5px;
+        padding: 8px 10px;
+        padding-bottom: 12px;
     }
 }
