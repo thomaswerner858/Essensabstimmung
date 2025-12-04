@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍽️ Mittags-Abstimmung Team</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mittags-Abstimmung Team</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#673AB7',
+              secondary: '#FF9800',
+              bgLight: '#f8fafc',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-    
-    <h1 id="main-headline">Wo gehen wir heute essen?</h1>
-    <p id="info-text">Lade Lokale...</p>
-    
-    <div id="lokale-liste">
-    </div>
-    
-    <div id="voting-controls">
-        <p>Verbleibende Stimmen: <span id="votes-left">3</span></p>
-        <button id="submit-votes" disabled>Meine 3 Stimmen senden</button>
-    </div>
-    
-    <footer>
-        <p>&copy; Team Abstimmung</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
+  <body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
