@@ -1,52 +1,116 @@
-/* NEU: Styles für das Multi-Voting */
+/* ====================================================================================
+   GOOGLE/MATERIAL STYLE MIT LILA & ORANGE
+   ==================================================================================== */
 
-/* Wrapper für den Senden-Button und Zähler */
-#voting-controls {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border: 1px solid #ddd;
+/* --- Farbvariablen --- */
+:root {
+    --color-primary: #673AB7;       /* Deep Purple (Haupt-Lila) */
+    --color-secondary: #FF9800;     /* Orange 500 (Akzentfarbe) */
+    --color-success: #4CAF50;       /* Grünton für Plus-Button/Erfolg */
+    --color-danger: #F44336;        /* Rot für Fehler/Minus-Button */
+    --color-text: #3c4043;          /* Dunkler Google Text */
+    --color-background: #f1f3f4;    /* Leicht grauer Hintergrund */
+    --color-card-bg: #ffffff;       /* Weißer Kartenhintergrund */
+    --color-border: #dadce0;        /* Leichter Grauborder */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
 }
 
-#voting-controls p {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #3f51b5;
-    margin-bottom: 15px;
+/* --- Allgemeine Basis --- */
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Roboto ist der Google-Standard */
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
 }
 
-#votes-left {
-    color: #ff9800; /* Orange Akzent */
-    font-size: 1.5em;
-    margin-left: 5px;
-}
-
-#submit-votes {
-    background-color: #e91e63; /* Kräftige Farbe zum Senden */
+header {
+    background-color: var(--color-primary);
     color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+h1 {
+    font-size: 2.2em;
+    margin: 0;
+    font-weight: 500;
+}
+
+#info-text {
     font-size: 1.1em;
+    font-style: italic;
+    margin-top: 10px;
+    color: #fff; /* Weißer Text auf lila Hintergrund */
+}
+
+/* --- Lokale Karten Grid --- */
+#lokale-liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 24px auto;
+    justify-content: center;
+}
+
+.lokal-card {
+    background-color: var(--color-card-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    width: 300px;
+    flex-grow: 1;
+    min-width: 280px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--color-border); /* Leichter Rand */
+}
+
+.lokal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Hervorhebung des Gewinners */
+.lokal-card.winner {
+    border: 2px solid var(--color-secondary);
+    background-color: #fff8e1; /* Sehr helles Orange */
+}
+
+h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.essen {
+    font-weight: 400;
+    color: #4CAF50; /* Grüner Akzent für Essen */
+    margin-bottom: 12px;
+}
+
+/* --- Abstimmungsbereich in der Karte --- */
+.vote-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border);
+}
+
+.stimmen-count {
+    font-size: 1.5em;
     font-weight: bold;
-    transition: background-color 0.2s;
+    color: var(--color-secondary);
 }
 
-#submit-votes:hover:not(:disabled) {
-    background-color: #c2185b;
-}
-
-#submit-votes:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Steuerelemente in der Karte (ersetzt den alten "Abstimmen"-Button) */
+/* --- Abstimmungs-Buttons in der Karte (+/-) --- */
 .vote-controls-group {
     display: flex;
     align-items: center;
@@ -54,35 +118,137 @@
 }
 
 .vote-control-btn {
-    background-color: #4caf50;
+    background-color: var(--color-primary);
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 5px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2em;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.vote-control-btn.minus-btn {
+    background-color: var(--color-danger); /* Rot für Minus */
+}
+
+.vote-control-btn.plus-btn {
+    background-color: var(--color-success); /* Grün für Plus */
+}
+
+.vote-control-btn:hover:not(:disabled) {
+    box-shadow: var(--shadow-md);
 }
 
 .vote-control-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .current-selection {
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: bold;
-    color: #333;
+    color: var(--color-text);
     min-width: 20px;
     text-align: center;
 }
 
-/* Die neue vote-area in den Lokale-Karten muss nun mehr Platz bieten */
-.lokal-card .vote-area {
-    justify-content: space-between;
+/* --- Link Button --- */
+.link-button {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    background-color: var(--color-secondary);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.link-button:hover {
+    background-color: #fb8c00; /* Dunkleres Orange */
+}
+
+/* --- Globales Abstimmungs-Panel (Voting Controls) --- */
+#voting-controls {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: var(--color-card-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid var(--color-border);
+}
+
+#voting-controls p {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+#votes-left {
+    color: var(--color-danger); /* Rot für verbleibende Stimmen, um Aufmerksamkeit zu erzeugen */
+    font-size: 1.6em;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+#submit-votes {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+#submit-votes:hover:not(:disabled) {
+    background-color: #5e35b1; /* Dunkleres Lila */
+    box-shadow: var(--shadow-md);
+}
+
+#submit-votes:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--color-background);
+    margin-top: 30px;
+    color: #9aa0a6; /* Heller Grauton */
+}
+
+/* --- Responsive Anpassungen --- */
+@media (max-width: 768px) {
+    #lokale-liste {
+        padding: 15px;
+    }
+    .lokal-card {
+        width: 100%;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    #voting-controls {
+        padding: 15px;
+    }
 }
