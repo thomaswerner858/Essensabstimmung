@@ -1,125 +1,88 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
+/* NEU: Styles für das Multi-Voting */
 
-header {
-    background-color: #3f51b5;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#info-text {
-    font-size: 1.1em;
-    font-style: italic;
-    margin-top: 10px;
-}
-
-#lokale-liste {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
+/* Wrapper für den Senden-Button und Zähler */
+#voting-controls {
+    max-width: 800px;
     margin: 20px auto;
-    justify-content: center;
-}
-
-.lokal-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 300px;
-    flex-grow: 1;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-left: 5px solid #ccc;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
-.lokal-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Hervorhebung des Gewinners */
-.lokal-card.winner {
-    border-left: 5px solid #ff9800; /* Orange Akzent */
-    background-color: #fffde7; /* Leicht gelblicher Hintergrund */
-}
-
-h2 {
+#voting-controls p {
+    font-size: 1.2em;
+    font-weight: bold;
     color: #3f51b5;
-    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#votes-left {
+    color: #ff9800; /* Orange Akzent */
     font-size: 1.5em;
+    margin-left: 5px;
 }
 
-.essen {
-    font-weight: bold;
-    color: #009688;
-    margin-bottom: 10px;
-}
-
-.vote-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px dashed #eee;
-}
-
-.stimmen-count {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #e91e63;
-}
-
-.vote-button {
-    background-color: #4caf50;
+#submit-votes {
+    background-color: #e91e63; /* Kräftige Farbe zum Senden */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 30px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
     transition: background-color 0.2s;
 }
 
-.vote-button:hover:enabled {
-    background-color: #388e3c;
+#submit-votes:hover:not(:disabled) {
+    background-color: #c2185b;
 }
 
-.vote-button:disabled {
-    background-color: #bdbdbd;
+#submit-votes:disabled {
+    background-color: #cccccc;
     cursor: not-allowed;
 }
 
-.link-button {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    background-color: #03a9f4;
+/* Steuerelemente in der Karte (ersetzt den alten "Abstimmen"-Button) */
+.vote-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vote-control-btn {
+    background-color: #4caf50;
     color: white;
-    text-decoration: none;
-    padding: 8px;
-    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
 }
 
-footer {
+.vote-control-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.current-selection {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    min-width: 20px;
     text-align: center;
-    padding: 10px;
-    background-color: #eee;
-    margin-top: 20px;
 }
 
-/* Responsive Design für kleinere Bildschirme */
-@media (max-width: 600px) {
-    .lokal-card {
-        width: 100%; 
-    }
+/* Die neue vote-area in den Lokale-Karten muss nun mehr Platz bieten */
+.lokal-card .vote-area {
+    justify-content: space-between;
 }
